@@ -6,6 +6,13 @@ pipeline {
     DOCKER_CREDENTIALS_ID = 'docker-hub-creds'
   }
   stages {
+stage('Checkout') {
+      steps {
+        git branch: 'master',
+            credentialsId: 'github-token',
+            url: 'https://github.com/damudhanalakshmi/.git'
+      }
+    }
     stage('Build Package') {
       steps {
         sh 'mvn clean package'
